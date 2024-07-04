@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  web:
+    tag: zhht1204/astral
+    build: .
+    ports:
+      - "80:80"
+    env_file:
+      - .env
+    environment:
