@@ -116,6 +116,7 @@ RUN chown -R www-data:www-data /app/routes
 RUN chown -R www-data:www-data /app/database
 RUN chown -R www-data:www-data /app/storage
 
+RUN supervisorctl shutdown
 # 设置容器启动时执行的命令
 CMD ["/usr/bin/supervisord"]
 
