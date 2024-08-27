@@ -5,14 +5,14 @@ namespace Astral\Console\Commands;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Question\Question;
 
-class MigrateCommand extends Command
+class MigrateFromAskCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'astral:migrate';
+    protected $signature = 'astral:migrate_ask';
 
     /**
      * The console command description.
@@ -82,10 +82,10 @@ class MigrateCommand extends Command
     protected function requestDatabaseCredentials()
     {
         return [
-            'DB_DATABASE' => env('DB_DATABASE'),
-            'DB_PORT'     => env('DB_PORT'),
-            'DB_USERNAME' => env('DB_USERNAME'),
-            'DB_PASSWORD' => env('DB_PASSWORD'),
+            'DB_DATABASE' => $this->ask('Database name', 'astral'),
+            'DB_PORT'     => $this->ask('Database port', 3306),
+            'DB_USERNAME' => $this->ask('Database user'),
+            'DB_PASSWORD' => $this->askHiddenWithDefault('Database password (leave blank for no password)'),
         ];
     }
 

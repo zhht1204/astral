@@ -32,6 +32,8 @@ ENV GITHUB_CLIENT_CALLBACK_URL=
 
 # 创建.env文件并写入环境变量
 RUN touch .env
+RUN chown www-data:www-data /app/.env
+RUN chmod 744 .env
 RUN echo "APP_NAME=${APP_NAME}" > .env
 RUN echo "APP_ENV=${APP_ENV}" >> .env
 RUN echo "APP_KEY=${APP_KEY}" >> .env
@@ -101,9 +103,9 @@ RUN yarn dev
 
 # 生成APP_KEY
 RUN php artisan key:generate
-RUN php artisan cache:clear
+RUN php artisan config:cache
 # migrate数据库
-RUN php artisan migrate
+RUN php artisan astral:migrate
 # 生成运行时文件夹并改变owner
 RUN chown -R www-data:www-data /app/public
 RUN chown -R www-data:www-data /app/app
@@ -112,8 +114,8 @@ RUN chown -R www-data:www-data /app/bootstrap
 RUN chown -R www-data:www-data /app/vendor
 RUN chown -R www-data:www-data /app/routes
 RUN chown -R www-data:www-data /app/database
+RUN chown -R www-data:www-data /app/storage
 
-RUN supervisorctl shutdown
 # 设置容器启动时执行的命令
 CMD ["/usr/bin/supervisord"]
 
