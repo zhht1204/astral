@@ -6,7 +6,7 @@ services:
     build:
       context: .
 #      args:
-         # assuming domain astral.dev
+#        # assuming domain astral.dev
 #        APP_URL: https://astral.dev
 #        SESSION_DOMAIN: astral.dev
 #        GITHUB_CLIENT_ID: xxxxxxxxx
