@@ -3,6 +3,14 @@ version: '3'
 services:
   web:
     image: zhht1204/astral
-    build: .
+    build:
+      context: .
+#      args:
+         # assuming domain astral.dev
+#        APP_URL: https://astral.dev
+#        SESSION_DOMAIN: astral.dev
+#        GITHUB_CLIENT_ID: xxxxxxxxx
+#        GITHUB_CLIENT_SECRET: yyyyyyyyyyyyyyyyyyyyyyy
+#        GITHUB_CLIENT_CALLBACK_URL: http://astral.dev/auth/github/callback
     ports:
       - "80:80"
